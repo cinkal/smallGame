@@ -65815,6 +65815,11 @@ var smallGame;
                 url: "res/CreateGameScence/CreateRoomView/CreateRoomView.atlas",
                 type: Laya.Loader.ATLAS,
             },
+            {
+                id: 2,
+                url: "res/CreateGameScence/spine/five-fold.sk",
+                type: Laya.Loader.SK,
+            },
         ];
         return LoginSceneConfig;
     }());
@@ -71289,11 +71294,11 @@ var smallGame;
         SeverDispatcher.prototype.init = function () {
             _super.prototype.init.call(this);
             Laya.Browser.window.protobuf.load("proto/c2s_player.proto", this.onProtoBufferComplete.bind(this));
-            Laya.Browser.window.protobuf.load("proto/c2g_game.proto", this.onProtoBufferComplete.bind(this));
-            Laya.Browser.window.protobuf.load("proto/c2s_arena.proto", this.onProtoBufferComplete.bind(this));
-            Laya.Browser.window.protobuf.load("proto/g2c_game.proto", this.onProtoBufferComplete.bind(this));
-            Laya.Browser.window.protobuf.load("proto/s2c_arena.proto", this.onProtoBufferComplete.bind(this));
-            Laya.Browser.window.protobuf.load("proto/s2c_player.proto", this.onProtoBufferComplete.bind(this));
+            // Laya.Browser.window.protobuf.load("proto/c2g_game.proto", this.onProtoBufferComplete.bind(this));
+            // Laya.Browser.window.protobuf.load("proto/c2s_arena.proto", this.onProtoBufferComplete.bind(this));
+            // Laya.Browser.window.protobuf.load("proto/g2c_game.proto", this.onProtoBufferComplete.bind(this));
+            // Laya.Browser.window.protobuf.load("proto/s2c_arena.proto", this.onProtoBufferComplete.bind(this));
+            // Laya.Browser.window.protobuf.load("proto/s2c_player.proto", this.onProtoBufferComplete.bind(this));
             // this._cmdMap[C2S_PROTOCOL.c2s_heartbeat] = S2C_PROTOCOL.s2c_heartbeat;
             this._cmdMap[C2S_PROTOCOL.c2s_login] = S2C_PROTOCOL.s2c_login;
             this._cmdBasePI = S2C_PROTOCOL_MAX;
@@ -72052,6 +72057,15 @@ var smallGame;
                 return false;
             this.addChild(this._LoginView);
             this._LoginView.registerEvent();
+            var tempSk = smallGame.ResourceManager.getInstance().getBuildingsTempletMap().get("res/CreateGameScence/spine/five-fold.sk");
+            if (tempSk) {
+                var sk = tempSk.buildArmature(0);
+                if (sk) {
+                    sk.play(0, true);
+                    sk.pos(this.width / 2, this.height / 4);
+                    this.addChild(sk);
+                }
+            }
             return true;
         };
         LoginScene.prototype.onEnter = function () {

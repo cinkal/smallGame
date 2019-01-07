@@ -16,8 +16,7 @@ module Dominoes {
 
         private init() : boolean {
             this._versionLabel.text = CLIENTVERSION;
-            
-				
+
             return true;
         }
     }
