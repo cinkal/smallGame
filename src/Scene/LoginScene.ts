@@ -60,15 +60,15 @@ module smallGame {
             this.addChild(this._LoginView);
             this._LoginView.registerEvent();
 
-            let tempSk = smallGame.ResourceManager.getInstance().getBuildingsTempletMap().get("res/CreateGameScence/spine/five-fold.sk");
-            if (tempSk) {
-                let sk = tempSk.buildArmature(0);
-                if (sk) {
-                    sk.play(0, true);
-                    sk.pos(this.width / 2, this.height / 4);
-                    this.addChild(sk);
-                }
-            }
+            // let tempSk = smallGame.ResourceManager.getInstance().getBuildingsTempletMap().get("res/CreateGameScence/spine/five-fold.sk");
+            // if (tempSk) {
+            //     let sk = tempSk.buildArmature(0);
+            //     if (sk) {
+            //         sk.play(0, true);
+            //         sk.pos(this.width / 2, this.height / 4);
+            //         this.addChild(sk);
+            //     }
+            // }
 
             return true;
         }
